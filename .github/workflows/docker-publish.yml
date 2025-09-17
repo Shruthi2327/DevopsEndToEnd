@@ -27,11 +27,11 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: shruthi2327/fst-backend:latest
+          tags: pandu2327/fst-backend:latest
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
           push: true
-          tags: shruthi2327/fst-frontend:latest
+          tags: pandu2327/fst-frontend:latest
