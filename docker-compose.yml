@@ -1,22 +1,32 @@
+version: "3.8"
+
 services:
   backend:
     build: ./backend
+    container_name: fst-backend
     ports:
       - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/tododb
+      - PORT=5000
     depends_on:
-      - mongodb
+      - mongo
 
   frontend:
     build: ./frontend
+    container_name: fst-frontend
     ports:
       - "3000:80"
+    depends_on:
+      - backend
 
-  mongodb:
-    image: mongo:7
+  mongo:
+    image: mongo:6.0
+    container_name: fst-mongo
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db   # ✅ persistent volume
+      - mongo-data:/data/db
 
 volumes:
-  mongo_data:
+  mongo-data:
